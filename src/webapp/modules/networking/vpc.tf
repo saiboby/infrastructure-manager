@@ -19,6 +19,7 @@ Name = "myigw"
 
 
 resource "aws_subnet" "publicsubnet"{
+availability_zone = "us-east-1c"
 vpc_id = "${aws_vpc.myvpc.id}"
 cidr_block = "192.168.1.0/24"
 tags={
