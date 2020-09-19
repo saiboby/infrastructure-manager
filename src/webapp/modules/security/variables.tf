@@ -1,6 +1,6 @@
-#variable "myaccesskey"{
-#type = string
-#}
+variable "myvpc"{
+type = string
+}
 #variable "mysecretkey"{
 #type = "string"
 #}
