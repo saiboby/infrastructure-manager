@@ -4,7 +4,7 @@ Terraform is used to provision and manage IT Infrastructure
 
 Pre-Requisites
 ============================
-$ sh hardening.sh reference: https://github.com/krishnamaram2/WebApp
+$ sh hardening.sh reference: https://github.com/krishnamaram2/webapp
 
 
 Execution Flow
@@ -20,12 +20,12 @@ create DynamoDB table
 
 step 1: clone repo
 
-$git clone https://github.com/krishnamaram2/Infrastructure_Manager.git
+$git clone https://github.com/krishnamaram2/infrastructure-manager.git
 
 
 Step 2: move to directory
 
-cd Infrastructure_Manager/src
+cd infrastructure-manager/src
 
 
 
