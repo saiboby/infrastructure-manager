@@ -8,3 +8,8 @@ myamiid = "${var.myamiid}"
 }
 
 
+module "networking"{
+source = "./modules/networking"
+}
+
+
