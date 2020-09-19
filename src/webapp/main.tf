@@ -18,5 +18,5 @@ myvpc = "${module.networking.myvpc}"
 
 module "storage"{
 source = "./modules/storage"
-webserver = "${module.computing.webserver[1]}"
+webserver = "${module.computing.webserver[0]}"
 }
