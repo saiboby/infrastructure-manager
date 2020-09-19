@@ -12,6 +12,7 @@ data "template_file" "webserver-userdata" {
 ################################################  instances modules #####################################
 resource "aws_instance" "webserver" {
 count = 1
+availability_zone = "us-east-1c"
 ami = "${var.myamiid}"
 instance_type = "t2.medium"
 subnet_id = "${var.publicsubnet}"
