@@ -29,6 +29,7 @@ root_block_device {
   "volume_size" = "15GiB"
   "delete_on_termination" = "true"
   }
+  }
 
 ############################################ Networking modules ###############################3
 resource "aws_eip" "webeip"{
