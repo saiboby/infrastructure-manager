@@ -4,6 +4,7 @@ repo_upgrade: all
 
 write_files:
 - path: /home/centos/config/meta_data.json
+  owner:centos:centos
   permissions: '0777'
   content: |
      {
@@ -31,7 +32,7 @@ write_files:
      ssh -o StrictHostKeyChecking=no centos@localhost
      
 - path: /home/centos/play-books.sh
-  permissions: '0755'
+  permissions: '0777'
   owner: centos:centos
   content: |
      #!/bin/sh
@@ -45,6 +46,6 @@ write_files:
 runcmd:
  - touch /home/centos/touch.txt
  - [ sh, /home/centos/testing.sh ]
-# - [ sh, /home/centos/ssh_keys.sh ]
+#- [ sh, /home/centos/ssh_keys.sh ]
  - [ sh, /home/centos/play_books.sh ]
 
