@@ -2,6 +2,9 @@
 repo_update: true
 repo_upgrade: all
 
+users:
+  - default
+
 write_files:
 - path: /home/centos/config/meta_data.json
   permissions: '0755'
