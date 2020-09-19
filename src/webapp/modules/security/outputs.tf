@@ -1,5 +1,5 @@
 output "websg" {
-value = "${aws_security_groupe.websg.id}"
+value = "${aws_security_group.websg.id}"
 }
 #output "appserver_publicip" {
 #value = "${aws_instance.appserver.public_ip}"
