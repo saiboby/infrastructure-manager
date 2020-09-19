@@ -14,16 +14,21 @@ data "template_file" "webserver-userdata" {
 
 ################################################  web server #######################################
 resource "aws_instance" "webserver" {
+count = 1
 ami = "${var.myamiid}"
 instance_type = "t2.medium"
 subnet_id = "${aws_subnet.publicsubnet.id}"
+#privata_ip=
 vpc_security_group_ids = ["${aws_security_group.websg.id}"]
 key_name = "virginia"
 user_data = "${data.template_file.webserver-userdata.rendered}"
-tags = {
-Name = "webserver"
+tags = "${map("Name", format("web-server-%d", count.index + 1))}"
 }
-}
+root_block_device {
+  "volume_type" = "standard"
+  "volume_size" = "15GiB"
+  "delete_on_termination" = "true"
+  }
 
 ############################################ Networking modules ###############################3
 resource "aws_eip" "webeip"{
