@@ -1,6 +1,7 @@
 ################################################  Storage modules #####################################
 resource "aws_ebs_volume" "ebs3" {
 availability_zone = "us-east-1c"
+size = "11"
 }
 
 resource "aws_volume_attachment" "vattach"{
