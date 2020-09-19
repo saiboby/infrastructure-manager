@@ -2,7 +2,7 @@
 resource "aws_security_group" "websg" {
   name        = "websg"
   description = "Allow all traffic"
-  vpc_id ="${aws_vpc.myvpc.id}"
+  vpc_id ="${var.myvpc}"
   ingress {
     description = "TLS from VPC"
     from_port   = 0
