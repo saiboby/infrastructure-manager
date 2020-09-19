@@ -1,6 +1,6 @@
-#output "webserver_publicip" {
-#value = "${aws_instance.webserver.public_ip}"
-#}
+output "websg" {
+value = "${aws_security_groupe.websg.id}"
+}
 #output "appserver_publicip" {
 #value = "${aws_instance.appserver.public_ip}"
 #}
