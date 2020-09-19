@@ -4,7 +4,6 @@ repo_upgrade: all
 
 write_files:
 - path: /home/centos/config/meta_data.json
-  owner:centos:centos
   permissions: '0777'
   content: |
      {
