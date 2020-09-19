@@ -14,9 +14,11 @@ resource "aws_instance" "webserver" {
 count = 1
 ami = "${var.myamiid}"
 instance_type = "t2.medium"
-subnet_id = "${aws_subnet.publicsubnet.id}"
+#subnet_id = "${aws_subnet.publicsubnet.id}"
+subnet_id = "${var.publicsubnet}"
 private_ip= "192.168.1.6"
-vpc_security_group_ids = ["${aws_security_group.websg.id}"]
+#vpc_security_group_ids = ["${aws_security_group.websg.id}"]
+vpc_security_group_ids = ["${var.websg}"]
 key_name = "virginia"
 user_data = "${data.template_file.webserver-userdata.rendered}"
 tags = "${map("Name", format("web-server-%d", count.index + 1))}"
