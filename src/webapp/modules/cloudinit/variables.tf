@@ -18,6 +18,3 @@ type = string
 variable "websg"{
 type = "string"
 }
-variable "userdata"{
-type = "string"
-}
