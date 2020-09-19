@@ -26,8 +26,13 @@ tags = "${map("Name", format("web-server-%d", count.index + 1))}"
 
 root_block_device {
   volume_type = "standard"
-  volume_size = "15"
+  volume_size = "9"
   delete_on_termination = "true"
+  }
+ebs_block_device {
+  volume_type = "gp2"
+  volume_size = "10"
+  #delete_on_termination = "true"
   }
 
   }
