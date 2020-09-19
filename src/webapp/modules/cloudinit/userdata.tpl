@@ -14,12 +14,14 @@ write_files:
              
 - path: /home/centos/testing.sh
   permissions: '0755'
+  owner: centos:centos
   content: |
      #!/bin/sh
      touch /home/centos/testing.txt
 
 - path: /home/centos/ssh_keys.sh
   permissions: '0755'
+  owner: centos:centos
   content: |
      #!/bin/sh
      ssh-keygen -q -t rsa -N '' -f /home/centos/.ssh/id_rsa <<<y 2>&1 >/dev/null
@@ -30,6 +32,7 @@ write_files:
      
 - path: /home/centos/play-books.sh
   permissions: '0755'
+  owner: centos:centos
   content: |
      #!/bin/sh
      git clone https://github.com/krishnamaram2/configuration-manager.git
