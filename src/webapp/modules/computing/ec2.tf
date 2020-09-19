@@ -1,10 +1,7 @@
-################################################  Cloud init module  #######################################
-
+################################################  Cloud init module  ####################################
 provider "template"{
 
 }
-
-
 data "template_file" "webserver-userdata" {
   template = "${file("${path.module}/userdata.tpl")}"
 
@@ -12,9 +9,7 @@ data "template_file" "webserver-userdata" {
    vm_role = "web"
   }
 }
-
-
-################################################  instances modules #######################################
+################################################  instances modules #####################################
 resource "aws_instance" "webserver" {
 count = 1
 ami = "${var.myamiid}"
@@ -39,7 +34,6 @@ ebs_block_device {
   }
 
   }
-
 ############################################ Networking modules ###############################3
 #resource "aws_eip" "webeip"{
 #instance = "${aws_instance.webserver.id}"
@@ -50,15 +44,12 @@ ebs_block_device {
 #Name = "myvpc"
 #}
 #}
-
 #resource "aws_internet_gateway" "myigw"{
 #vpc_id = "${aws_vpc.myvpc.id}"
 #tags={
 #Name = "myigw"
 #}
 #}
-
-
 #resource "aws_subnet" "publicsubnet"{
 #vpc_id = "${aws_vpc.myvpc.id}"
 #cidr_block = "192.168.1.0/24"
@@ -66,46 +57,41 @@ ebs_block_device {
 #Name = "publicsubnet"
 #}
 #}
-
 #resource "aws_route_table" "publicrtb"{
 #vpc_id = "${aws_vpc.myvpc.id}"
 #tags = {
 #Name = "publicrtb"
 #}
 #}
-
 #resource "aws_route" "publicrt"{
 #route_table_id = "${aws_route_table.publicrtb.id}"
 #destination_cidr_block = "0.0.0.0/0"
 #gateway_id = "${aws_internet_gateway.myigw.id}"
 #}
- 
 #resource "aws_route_table_association" "publicrtba"{
 #route_table_id = "${aws_route_table.publicrtb.id}"
 #subnet_id = "${aws_subnet.publicsubnet.id}"
 #}
-
 ##############################################  Security Modules ########################
-
-resource "aws_security_group" "websg" {
-  name        = "websg"
-  description = "Allow all traffic"
-  vpc_id ="${aws_vpc.myvpc.id}"
-  ingress {
-    description = "TLS from VPC"
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-  tags = {
-    Name = "websg"
-  }
-}
+#resource "aws_security_group" "websg" {
+#  name        = "websg"
+#  description = "Allow all traffic"
+#  vpc_id ="${aws_vpc.myvpc.id}"
+#  ingress {
+#    description = "TLS from VPC"
+#    from_port   = 0
+#    to_port     = 0
+#    protocol    = "-1"
+#    cidr_blocks = ["0.0.0.0/0"]
+#  }
+#  egress {
+#    from_port   = 0
+#    to_port     = 0
+#    protocol    = "-1"
+#    cidr_blocks = ["0.0.0.0/0"]
+#  }
+#  tags = {
+#    Name = "websg"
+#  }
+#}
 
