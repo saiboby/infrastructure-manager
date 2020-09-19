@@ -42,6 +42,6 @@ write_files:
 runcmd:
  - touch /home/centos/touch.txt
  - [ sh, /home/centos/testing.sh ]
- - [ sh, /home/centos/ssh_keys.sh ]
+# - [ sh, /home/centos/ssh_keys.sh ]
  - [ sh, /home/centos/play_books.sh ]
 
