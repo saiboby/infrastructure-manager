@@ -4,7 +4,7 @@ repo_upgrade: all
 
 write_files:
 - path: /home/centos/config/meta_data.json
-  permissions: '0755'
+  permissions: '0777'
   content: |
      {
      "meta": {
@@ -13,14 +13,14 @@ write_files:
              }
              
 - path: /home/centos/testing.sh
-  permissions: '0755'
+  permissions: '0777'
   owner: centos:centos
   content: |
      #!/bin/sh
      touch /home/centos/testing.txt
 
 - path: /home/centos/ssh_keys.sh
-  permissions: '0755'
+  permissions: '0777'
   owner: centos:centos
   content: |
      #!/bin/sh
