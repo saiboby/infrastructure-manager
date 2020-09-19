@@ -11,6 +11,7 @@ myamiid = "${var.myamiid}"
 }
 module "networking"{
 source = "./modules/networking"
+webserver = "${module.computing.webserver}"
 }
 module "security"{
 source = "./modules/security"
