@@ -15,13 +15,13 @@ write_files:
 - path: /home/centos/testing.sh
   permissions: '0755'
   content: |
-     #!/bin/bash
+     #!/bin/sh
      touch /home/centos/testing.txt
 
 - path: /home/centos/ssh_keys.sh
   permissions: '0755'
   content: |
-     #!/bin/bash
+     #!/bin/sh
      ssh-keygen -q -t rsa -N '' -f /home/centos/.ssh/id_rsa <<<y 2>&1 >/dev/null
 
      cat /home/centos/.ssh/id_rsa.pub >> /home/centos/.ssh/authorized_keys
@@ -31,7 +31,7 @@ write_files:
 - path: /home/centos/play-books.sh
   permissions: '0755'
   content: |
-     #!/bin/bash
+     #!/bin/sh
      git clone https://github.com/krishnamaram2/configuration-manager.git
 
      cd configuration-manager/src/webapp
