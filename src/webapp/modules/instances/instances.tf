@@ -13,7 +13,7 @@ data "template_file" "webserver-userdata" {
 
 
 ################################################  web server #######################################
-resource "aws_instance" "webserver" {
+resource "aws_instance" "web-server" {
 count = 1
 ami = "${var.myamiid}"
 instance_type = "t2.medium"
