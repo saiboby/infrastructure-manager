@@ -1,3 +1,3 @@
 output "vattach" {
-value = "${aws_volume.attachment.vattach.id}"
+value = "${aws_volume_attachment.vattach.id}"
 }
