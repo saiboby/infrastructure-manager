@@ -30,6 +30,7 @@ root_block_device {
   delete_on_termination = "true"
   }
 ebs_block_device {
+  device_name = "/dev/xvde"
   volume_type = "gp2"
   volume_size = "10"
   #delete_on_termination = "true"
