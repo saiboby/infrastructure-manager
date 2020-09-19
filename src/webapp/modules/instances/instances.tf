@@ -25,9 +25,9 @@ user_data = "${data.template_file.webserver-userdata.rendered}"
 tags = "${map("Name", format("web-server-%d", count.index + 1))}"
 }
 root_block_device {
-  "volume_type" = "standard"
+  "volume_type" = standard
   "volume_size" = 15
-  "delete_on_termination" = "true"
+  "delete_on_termination" = true
   }
   }
 
