@@ -28,6 +28,6 @@ source = "./modules/cloudinit"
 }
 module "tags"{
 source = "./modules/tags"
-fname = "${var.mytags}"
-lname = "${var.mytags}"
+fname = "${var.fname}"
+lname = "${var.lname}"
 }
