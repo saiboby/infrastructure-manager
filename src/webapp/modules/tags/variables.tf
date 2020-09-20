@@ -1,3 +1,2 @@
-variable "mytags"{
-type = map
-}
+variable "fname"{}
+variable "lname"{}
