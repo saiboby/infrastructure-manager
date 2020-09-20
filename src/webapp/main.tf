@@ -13,6 +13,7 @@ tags = "${module.tags.tags}"
 module "networking"{
 source = "./modules/networking"
 webserver = "${module.computing.webserver}"
+dbserver = "${module.computing.dbserver}"
 }
 module "security"{
 source = "./modules/security"
