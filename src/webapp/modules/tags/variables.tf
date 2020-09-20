@@ -1,0 +1,3 @@
+variable "mytags"{
+type = map
+}

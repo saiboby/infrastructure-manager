@@ -8,6 +8,7 @@ userdata = "${module.cloudinit.userdata}"
 #myaccesskey = "${var.myaccesskey}"
 #mysecretkey = "${var.mysecretkey}"
 myamiid = "${var.myamiid}"
+tags = "${module.tags.tags}"
 }
 module "networking"{
 source = "./modules/networking"
@@ -24,4 +25,8 @@ webserver = "${module.computing.webserver}"
 }
 module "cloudinit"{
 source = "./modules/cloudinit"
+}
+module "tags"{
+source = "./modules/tags"
+mytags = "${var.mytags}"
 }

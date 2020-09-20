@@ -21,3 +21,6 @@ type = "string"
 variable "userdata"{
 type = "string"
 }
+variable "tags"{
+type = "map"
+}
