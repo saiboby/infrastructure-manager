@@ -1,3 +1,5 @@
 output "tags" {
-value = "${var.mytags}"
+value = {
+  "fname" = "${var.fname}"
+  "lname" = "${var.lname}"
 }
