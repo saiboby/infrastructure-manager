@@ -1,0 +1,3 @@
+#variable "myaccesskey"{
+#type = string
+#}
