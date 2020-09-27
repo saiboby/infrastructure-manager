@@ -1,57 +1,39 @@
 
 resource "aws_instance" "webserver" {
-count = 1
-availability_zone = "us-east-1c"
 ami = "${var.myamiid}"
 instance_type = "t2.medium"
-subnet_id = "${var.publicsubnet}"
-private_ip= "192.168.1.6"
-vpc_security_group_ids = ["${var.websg}"]
+subnet_id = "${aws_subnet.publicsubnet.id}"
+private_ip = "192.168.5.4"
+vpc_security_group_ids = ["${aws_security_group.websg.id}"]
 key_name = "virginia"
-user_data = "${var.userdata}"
-tags = "${merge(var.tags, map("Name", format("web-server-%d", count.index + 1)))}"
-root_block_device {
-  volume_type = "standard"
-  volume_size = "9"
-  delete_on_termination = "true"
-  }
-ebs_block_device {
-  device_name = "/dev/xvde"
-  volume_type = "gp2"
-  volume_size = "10"
-  }
+user_data = "${data.template_file.webserver-userdata.rendered}"
 }
-
+data "template_file" "webserver-userdata" {
+  template = "${file("./userdata.tpl")}"
+}
 
 variable "myregion"{
 type = "string"
 default = "us-east-1"
 }
 
-#variable "myaccesskey"{
-#type = string
-#}
-
-#variable "mysecretkey"{
-#type = "string"
-#}
-
 variable "myamiid"{
 type = "string"
 #default = "ami-0affd4508a5d2481b"
+default = "ami-025312911dac117a0"
 }
 
 
-#output "webserverpublic_ip"{
-#value = "${module.instances.webserver_publicip}"
-#}
+output "webserverpublic_ip"{
+value = "${aws_instance.webserver.public_ip}"
+}
 
 
 
 resource "aws_security_group" "websg" {
   name        = "websg"
   description = "Allow all traffic"
-  vpc_id ="${var.myvpc}"
+  vpc_id ="${aws_vpc.myvpc.id}"
   ingress {
     description = "TLS from VPC"
     from_port   = 0
@@ -73,10 +55,7 @@ resource "aws_security_group" "websg" {
 
 ############################################ Networking modules ###############################3
 resource "aws_eip" "webeip"{
-instance = "${var.webserver}"
-}
-resource "aws_eip" "dbeip"{
-instance = "${var.dbserver}"
+instance = "${aws_instance.webserver.id}"
 }
 resource "aws_vpc" "myvpc"{
 cidr_block = "192.168.0.0/16"
@@ -94,9 +73,8 @@ Name = "myigw"
 
 
 resource "aws_subnet" "publicsubnet"{
-availability_zone = "us-east-1c"
 vpc_id = "${aws_vpc.myvpc.id}"
-cidr_block = "192.168.1.0/24"
+cidr_block = "192.168.5.0/24"
 tags={
 Name = "publicsubnet"
 }
@@ -121,25 +99,13 @@ subnet_id = "${aws_subnet.publicsubnet.id}"
 }
 
 
-
-
-
 provider "aws"{
 region = "${var.myregion}"
 shared_credentials_file = "/home/centos/.aws/credentials"
-#profile                 = "customprofile"
-#access_key = "${var.myaccesskey}"
-#secret_key = "${var.mysecretkey}"
 }
 provider "template"{
 
 }
-data "template_file" "webserver-userdata" {
-  template = "${file("${path.module}/userdata.tpl")}"
 
-  vars = {
-   vm_role = "web"
-  }
-}
 
 
